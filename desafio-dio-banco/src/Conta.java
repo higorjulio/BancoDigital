@@ -1,5 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Conta {
+	private static List<Conta> contas = new ArrayList<>();
 	private static int AGENCIA_PADRAO = 1;
 	private static int SEQUENCIAL = 1;
 	
@@ -13,8 +16,16 @@ public abstract class Conta {
 		this.agencia = Conta.AGENCIA_PADRAO;
 		this.numero = SEQUENCIAL++;
 		this.cliente = cliente;
+		
+		contas.add(this);
 	}
 	
+	
+	public static List<Conta> getContas() {
+		return contas;
+	}
+
+
 	public void sacar(double valor) {
 		saldo -= valor;
 	}
